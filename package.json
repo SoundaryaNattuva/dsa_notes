@@ -1,0 +1,7 @@
+{
+  "name": "dsa_notes",
+  "version":
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
