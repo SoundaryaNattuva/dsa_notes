@@ -2,7 +2,7 @@
 
 // Very efficient for solving problems with minimal space complexity as well
 
-// Ex. write a fxn called sumZero which accepts a sorted array of integers. The fxn should find the first pair where the sum is 0. Return array that includes both values that zume zero or underfined if pair does not exist. 
+// Ex. write a fxn called sumZero which accepts a sorted array of integers. The fxn should find the first pair where the sum is 0. Return array that includes both values that sum zero or underfined if pair does not exist. 
 
 function sumZero (arr){
   //define where the pointers are

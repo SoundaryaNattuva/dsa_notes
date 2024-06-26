@@ -8,6 +8,7 @@ function countUniqueValues(arr)
   for (var j = 1; j < arr.length; j++){
     if (arr[i] !== arr[j]){
       i++;
+      // value of arr[j] is assigned to value on the left
       arr[i] = arr[j];
     }
   }

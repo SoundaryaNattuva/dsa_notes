@@ -1,15 +1,36 @@
 // Sliding Window: pattern involves creating a window which can either be an array or number from one position to another.
 
-//Depending on a certain condition, the window can either increase of closes (and a new window is created)
+//Depending on a certain condition, the window can either increases or closes (and a new window is created)
 //Ex. "hellothere" --> lother
 // Very useful for keeping track of a subset of data in an array/string etc.
 
-//Example: write a fxn called maxSubarraySum which accepst an array of integers and a number called n. The function should calculate the maximum sum of N conecutive elements in the array. 
+//Example: write a fxn called maxSubarraySum which accepst an array of integers and a number called n. The function should calculate the maximum sum of n conecutive elements in the array. 
 
 //maxSubarraySum ([1,2,5,2,8,1,5],2) --> 10
 //maxSubarraySum ([1,2,5,2,8,1,5],4) --> 17
 //maxSubarraySum ([4,2,1,6],1) --> 6
 //maxSubarraySum ([0],4) --> null
+
+// REFACTORED
+function maxSubarraySum(arr, num){
+let maxSum = 0;
+let tempSum = 0;
+if (arr.length < num){
+  return null
+}
+for (let i = 0; i < num; i++){
+  maxSum += arr[i];
+}
+tempSum = maxSum; // not necessary
+for (let i = num; i < arr.length; i++){
+  tempSum = tempSum - arr[i - num] + arr[i];
+  maxSum = Math.max(maxSum, tempSum);
+}
+return maxSum;
+}
+
+
+
 
 function maxSubarraySum(arr,num){
   //if num is > arr length -> null
@@ -34,18 +55,3 @@ function maxSubarraySum(arr,num){
   return max;
 }
 
-// REFACTORED
-function maxSubarraySum(arr, num){
-  let maxSum = 0;
-  let tempSum = 0;
-  if (arr.length < num){ return null};
-  for (let i = 0; i < num; i++){
-    maxSum += arr[i];
-  }
-  tempSum = maxSum;
-  for (let i = num; i < arr.length; i++){
-    tempSum = tempSum - arr[i - num] + arr[i];
-    maxSum = Math.max(maxSum, tempSum);
-  }
-  return maxSum;
-}
