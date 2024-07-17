@@ -30,3 +30,5 @@ function bubbleSort(arr){
   }
   return arr
 }
+
+bubbleSort([37,45,29,8,12,88,-3])
