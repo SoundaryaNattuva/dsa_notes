@@ -46,3 +46,56 @@ function validAnagram(str1, str2){
   }
 return true;
 }
+
+// practice #1
+function validAnagram (str1, str2) {
+  // str1 length ! str2 length
+  if (str1.length != str2.length){
+    return false
+  }
+
+  //create a counter and add to it
+  let counter = {};
+  
+  for (let i = 0; i < str1.length; i++){
+    let char = str1[i]
+    counter[char] ? counter[char] += 1 : counter[char] = 1
+  }
+
+  //char in str2 is preent in counter
+  for (let i = 0; i < str1.length; i++){
+    let char = str2[i]
+    if (!counter[char]){
+      return false
+    } else {
+      counter[char] -= 1
+    }
+  }
+  return true
+}
+
+// practice #2
+function validAnagram(str1, str2){
+  //if lengths do not match - false
+  if(str1.length != str2.length){
+    return false
+  }
+  
+  // set a counter
+  let counter = {};
+
+  //add letters and freq to counter
+  for (let i=0; i < str1.length; i++){
+    let char = str1[i]
+    counter[char] ? counter[char] += 1 : counter[char] = 1
+  }
+
+  //check if str2 letters exist or add up
+  for (let i=0; i < str2.length; i++){
+    let char = str2[i]
+    if (counter[char]){
+      counter[char] -= 1
+    } else return false;
+  }
+  return true
+}

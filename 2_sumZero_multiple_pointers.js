@@ -32,3 +32,21 @@ test('finds the first pair that sums to zero', () => {
   expect(sumZero([1, 2, 3])).toBeUndefined();
   expect(sumZero([-4, -3, -2, -1, 0, 1, 2, 3, 10])).toEqual([-3, 3]);
 });
+
+//#practice 1
+// sumZero([-3, -2, -1, 0, 1, 2, 3]
+
+function sumZero(list){
+  let left = 0
+  let right = list.length-1;
+  while (left < right){
+    let sum = list[left] + list[right]
+    if (sum === 0){
+      return [list[left],list[right]] 
+    } else if (sum > 0){
+      right --;
+    } else {
+      left ++;
+    }
+  }
+}
