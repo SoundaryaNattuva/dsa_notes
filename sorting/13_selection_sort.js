@@ -1,4 +1,4 @@
-// selection sort: instead of placing large values into sorted postion (as for bubble sort), it places small values into sorted position.
+// SELECTION SORT: instead of placing large values into sorted postion (as for bubble sort), it places small values into sorted position.
 //key: selection sort finds the minimum and swaps at the end. Bubble sort - swaps for largest till the end. 
 
 function selectionSort(arr){

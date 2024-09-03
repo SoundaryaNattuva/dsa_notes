@@ -1,5 +1,13 @@
-// Anagram:
+// Anagram: given two strings, write a function to determine if the second string is an anagram of the first. An anagram is a word, phrase or name formed by rearranging the letters of another, such as 'cinema' formed from 'iceman'. 
 
+// EXAMPLES:
+// validAnagram('aaz', 'zza') // false
+// validAnagram('rat', 'car') // false
+// validAnagram('anagram', 'nagaram') // true
+// validAnagram('awesome', 'awesom') // false
+// validAnagram('qwerty', 'qeywrt') // true
+
+// SOLUTION:
 function validAnagram (str1, str2) {
   if (str1.length != str2.length){
     return false
@@ -21,7 +29,6 @@ function validAnagram (str1, str2) {
 }
 
 // Anagram w/ explanation 
-
 function validAnagram(str1, str2){
   // check if length matches
   if (str1.length !== str2.length) {
@@ -46,6 +53,30 @@ function validAnagram(str1, str2){
   }
 return true;
 }
+
+// TAKEAWAY
+// - know difference btwn array indices and string indices. In this example, you do not need to make the string into an array using split method. 
+
+// Example of string: 
+// let str = "hello";
+// console.log(str[0]); // Output: 'h'
+// console.log(str[1]); // Output: 'e'
+
+// Example of array:
+// let arr = [10, 20, 30];
+// console.log(arr[0]); // Output: 10
+// console.log(arr[1]); // Output: 20
+
+// - syntax for split: split(separator)
+// let str = "apple,banana,orange";
+// let arr = str.split(","); // Output: ["apple", "banana", "orange"]
+// let arr = str.split(""); // Output: ["a","p","p",....]
+
+
+
+
+
+
 
 // practice #1
 function validAnagram (str1, str2) {
@@ -98,4 +129,34 @@ function validAnagram(str1, str2){
     } else return false;
   }
   return true
+}
+
+// practice #3
+function validAnagram(str1, str2){
+// split both strings
+let splitstr1 = str1.split('')
+let splitstr2 = str2.split('')
+// check if lengths of strings match
+if (splitstr1.length != splitstr2.length){
+  return false
+}
+// create counter
+let counter = {}
+// add letter and freq to counter for str1
+for (let i=0; i<splitstr1.length; i++){
+  let char = splitstr1[i]
+  counter[char] ? counter[char] += 1 : counter[char] = 1
+}
+// compare split str2 to counter
+for (let j=0; j<splitstr2.length; j++){
+  let char = splitstr2[j]
+  if (counter[char]){
+    counter[char] -= 1
+    if (counter[char] < 0){
+      return false
+    }
+  }
+  else return false
+}
+return true
 }
