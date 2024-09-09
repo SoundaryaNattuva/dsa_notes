@@ -82,3 +82,25 @@ while (left<=right){
     }
     return maxDigits
   }
+
+//radixSort()
+  function radixSort(nums){
+  // find maxDigit from nums
+  let maxDigits = mostDigit(nums)
+  // outerloop - maxDigit as limit
+  for (let k=0; k<maxDigits; k++){
+    // create buckets**
+    let digitBuckets = Array.from({length:10}, () => [])
+    // innerloop - iterate through each num in nums
+    for (let i=0; i<nums.length; i++){
+      // find digit of interest
+      let digitValue = getDigit(num[i],k)
+      // push into bucket **
+      digitBuckets[digitValue].push(num[i])
+    }
+    // concat bucket into nums **
+    nums = [].concat(...digitBuckets)
+  }
+  // return nums
+  return nums
+}

@@ -23,10 +23,10 @@ function mostDigits(nums){
 
 //SOLUTION
 function radixSort(nums){
-  maxDigits = mostDigits(nums)
-  for(let k=0; k < maxDigitCount; k++){
-    let digitBuckets = Array.from({length:10}, () => [])
-    for(let i=0; i<nums.length; i++){
+  let maxDigitCount = mostDigits(nums)
+  for(let k = 0; k < maxDigitCount; k++){
+    let digitBuckets = Array.from({length: 10}, () => []);
+    for(let i = 0; i<nums.length; i++){
       let digit = getDigit(nums[i],k);
       digitBuckets[digit].push(nums[i]);
     }
@@ -35,6 +35,47 @@ function radixSort(nums){
   return nums;
 }
 
+function radixSort(nums){
+  // find maxDigit from nums
+  let maxDigits = mostDigit(nums)
+  // outerloop - maxDigit as limit
+  for (let k=0; k<maxDigits; k++){
+    // create buckets
+    // innerloop - iterate through each num in nums
+    for (let i=0; i<nums.length; i++){
+      // find digit of interest
+      let digitValue = getDigit(num[i],k)
+      // push into bucket
+      buckets[digitValue].push(num[i])
+    }
+    // concat bucket into nums
+    nums.concat(...buckets)
+  }
+  // return nums
+  return nums
+}
+
+//PSEUDOCODE radixSort()
+function radixSort(nums){
+  // find maxDigit from nums
+  let maxDigits = mostDigit(nums)
+  // outerloop - maxDigit as limit
+  for (let k=0; k<maxDigits; k++){
+    // create buckets**
+    let digitBuckets = Array.from({length:10}, () => [])
+    // innerloop - iterate through each num in nums
+    for (let i=0; i<nums.length; i++){
+      // find digit of interest
+      let digitValue = getDigit(num[i],k)
+      // push into bucket **
+      digitBuckets[digitValue].push(num[i])
+    }
+    // concat bucket into nums **
+    nums = [].concat(...digitBuckets)
+  }
+  // return nums
+  return nums
+}
 
 
 // TAKEAWAY:
