@@ -66,9 +66,9 @@ function radixSort(nums){
     // innerloop - iterate through each num in nums
     for (let i=0; i<nums.length; i++){
       // find digit of interest
-      let digitValue = getDigit(num[i],k)
-      // push into bucket **
-      digitBuckets[digitValue].push(num[i])
+      let digit = getDigit(num[i],k)
+      // push into bucket #6 **
+      digitBuckets[digit].push(num[i])
     }
     // concat bucket into nums **
     nums = [].concat(...digitBuckets)

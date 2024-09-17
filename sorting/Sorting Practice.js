@@ -104,3 +104,42 @@ while (left<=right){
   // return nums
   return nums
 }
+
+// radixSort()
+function getDigit(num, i){
+  return Math.floor(Math.abs(num)/Math.pow(10, i)) % 10
+}
+
+function countDigit(num){
+  if (num === 0) return 1;
+  return Math.floor(Math.log10((Math.abs(num)))) + 1
+}
+
+function mostDigit(nums){
+  let maxCount = 0
+  for (let i=0; i<nums.length; i++){
+    let tempCount = countDigit(nums[i])
+    maxCount = Math.max(maxCount, tempCount)
+  }
+  return maxDigits
+}
+
+function radixSort(nums){
+  // find mostDigits
+  let mostDigitCount = mostDigit(nums)
+  // outerloop (k): iterate through array x mostDigits
+  for (let k=0; k<mostDigitCount; k++){
+    // create buckets **
+    let digitBuckets = Array.from({length:10}, () => [])
+    //innerloop (i): iterate through array
+      for (i=0; i<nums.length; i++){
+        // access k value in num **
+        let digit = getDigit(num[i], k)
+        // push items into buckets according to k **
+        digitBuckets[digit].push(num[i])
+      }
+    // concat arrays into nums **
+    nums = [].concat(...digitBuckets)
+  }
+  return nums
+}
