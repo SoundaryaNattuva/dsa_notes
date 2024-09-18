@@ -70,8 +70,24 @@ class SinglyLinkedList {
     return this
   }
 
+  get(index){
+    if (index < 0 || index >= this.length){
+      return undefined
+    }
+    let counter = 0
+    let current = this.head
+    while(counter !== index){
+      counter++
+      current = current.next
+    }
+    return current
+  }
+
 }
 
 
 // TAKEAWAY:
 // push: (1) you do not need to transverse list when you already have tail defined. (2) when making node head and tail - this.tail = this.head
+// pop:
+// shift: (1) reassigning head removes oldHead
+// unshift: (1) remember to add newNode by next function to head. 

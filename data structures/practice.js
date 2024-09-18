@@ -95,7 +95,20 @@ class SinglyLinkedList {
   this.length++
   }
 
-
+  get(index){
+    // edge case: if index < 0 or >= length, return undefined
+    if(index < 0 || index >= this.length) return undefined
+    // set counter and current variables
+    let counter = 0
+    let current = this.head
+    // loop through list till we hit index
+    while (counter !== index){
+      counter++
+      current = current.next
+    }
+    //return node
+    return current
+  }
 
 
 }
