@@ -83,11 +83,20 @@ class SinglyLinkedList {
     return current
   }
 
+  set(val, index){
+    let foundNode = this.get(index);
+    if(foundNode){
+      foundNode.val = val
+      return true
+    }
+    return false
+  }
 }
 
 
 // TAKEAWAY:
 // push: (1) you do not need to transverse list when you already have tail defined. (2) when making node head and tail - this.tail = this.head
 // pop:
-// shift: (1) reassigning head removes oldHead
-// unshift: (1) remember to add newNode by next function to head. 
+// shift: reassigning head removes oldHead
+// unshift: remember to add newNode by next function to head. 
+// set: we do not use 'this.foundNode.val' because foundNode is not a property of the singlyLinkedList class. foundNode is a local variable.

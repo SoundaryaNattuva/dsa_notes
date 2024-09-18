@@ -95,6 +95,7 @@ class SinglyLinkedList {
   this.length++
   }
 
+  // retrieve value at index X
   get(index){
     // edge case: if index < 0 or >= length, return undefined
     if(index < 0 || index >= this.length) return undefined
@@ -110,5 +111,15 @@ class SinglyLinkedList {
     return current
   }
 
+  // reassign value to node at index X
+  set(val, index){
+    let foundNode = this.get(index);
+    if(foundNode){
+      foundNode.val = val
+      return true
+    }
+    return false
+  }
 
+  //
 }
