@@ -107,7 +107,35 @@ class SinglyLinkedList {
     return true;
   }
 
-  
+  remove(index){
+    if ( index < 0 || index >= this.length) return false;
+    if (index === 0) return this.shift();
+    if (index === this.length-1) return this.pop();
+
+    let previousNode = this.get(index-1)
+    let removed = previousNode.next
+    previousNode.next = removed.next
+
+    this.length--
+    return removed
+  }
+
+  reverse(){
+    let node = this.head
+    this.head = this.tail
+    this.tail = node
+    let prev = null
+    let next;
+    for (let i=0; i<this.length; i++){
+      next = node.next
+      node.next = prev
+      prev = node
+      node = next
+    }
+    node = this.head
+    return this;
+  }
+
 }
 
 
@@ -117,3 +145,4 @@ class SinglyLinkedList {
 // shift: reassigning head removes oldHead
 // unshift: remember to add newNode by next function to head. 
 // set: we do not use 'this.foundNode.val' because foundNode is not a property of the singlyLinkedList class. foundNode is a local variable.
+// ** reverse is a popular interview question **

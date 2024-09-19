@@ -150,6 +150,27 @@ class SinglyLinkedList {
     this.length--
     return removed
   }
+
+  reverse() {
+    let node = this.head;     // Start with the head node
+    this.head = this.tail;    // Swap head and tail
+    this.tail = node;         // Now, tail is what was originally the head
+    let prev = null;          // Initialize previous node as null
+    let next;                 // Placeholder for the next node
+    
+    // Loop through the list and reverse the pointers
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;       // Store the next node
+      node.next = prev;       // Reverse the pointer of the current node
+      prev = node;            // Move prev to the current node
+      node = next;            // Move node to the next node (original next)
+    }
+    
+    // By the end of the loop, node is null and prev is the new head
+    node = this.head;         // Reset node to the new head
+    
+    return this;              // Return the reversed list
+  }
 }
 
 
