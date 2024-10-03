@@ -1,5 +1,7 @@
 //DOUBLY LINKED LIST
 
+const { after } = require("node:test");
+
 //Node: val, next, prev
 class Node {
   constructor(val){
@@ -100,5 +102,60 @@ class DoublyLinkedList {
     this.length++
     // return list
     return this
+  }
+
+  get(index){
+    // if index is < 0 or >= length, return null
+    if (index < 0 || index >= length){
+      return undefined
+    }
+    let count, current;
+    
+    // if index is <= half length of list...
+      // loop starts at beginning till  middle
+      //return found node
+    if(index <= this.length/2){
+      count = 0;
+      current = this.head;
+      while (count != index){
+        current = current.next;
+        count++;
+      }
+    } else {
+      // if index is > half length of list...
+        // loop starts at end to middle
+        // return found node
+      count = this.length -1;
+      current = this.tail;
+      while (count !== index){
+        current = current.prev;
+        count--;
+      }
+    }
+    return current;
+  }
+
+  set(index, newValue){
+    let foundNode = this.get(index)
+    if (foundNode != null){
+      foundNode.val = val;
+      return true
+    }
+    return false
+  }
+
+  insert(index, val){
+    if (index < 0 || index >= this.length) return false;
+    if (index === 0) return this.unshift(val);
+    if (index === this.length) return this.push(val);
+    let newNode = new Node(val);
+    let prevNode = this.get(index-1);
+    let afterNode = prevNode.next;
+    prevNode.next = newNode;
+    newNode.prev = prevIndex;
+    newNode.next = afterNode;
+    afterNode.prev = newNode;
+    this.length++
+    return true
   }
 }
