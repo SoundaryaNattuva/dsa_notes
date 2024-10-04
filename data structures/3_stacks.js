@@ -1,5 +1,13 @@
 //STACKS
-//definition: a linear data structure that stores elements in LIFO order
+//definition: a linear data structure that stores elements in LIFO order. Not built data structure in JS but simple to implement.
+
+// used for: handling function invocations(call stack), undo/redo, routing (remembering pages you have visited and go back/forward) and more!
+
+// Big O:
+// - Insertion O(1)
+// - Removal O(1)
+// - Searching O(N)
+// - Access O(N)
 
 class Node {
   constructor(){
