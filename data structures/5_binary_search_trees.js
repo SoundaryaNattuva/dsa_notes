@@ -50,7 +50,22 @@ class BinarySearchTree {
   }
 
   findNode(value){
-    
+    // if there is no root - return false
+    if(this.root === null) return false;
+    // create current as what to compare value with
+    let current = this.root;
+        found = false;
+    // while loop: loop till current doesn't exist and value is not found
+    while(current && !found){
+      if(value < current.value){
+        current = current.left;
+      } else if (value > current.value){
+        current = current.right
+      } else {
+        return true;
+      }
+    }
+    return false;
   }
 }
 
