@@ -32,3 +32,32 @@ Even with a large array and a great hash function, collisions are inevitable. Ma
   - separate chaining
   - linear probing
 */
+
+
+/* SEPARATE CHAINING
+def: at each index in our array we store values using a more sophisticated data structure (e.g. an array or linked list). This allows us to store multiple key-value pairs at the same index.
+*/
+
+/* LINEAR PROBING
+def: we search through the array to find the next empty slot. Unlike with separate chaining, this allows us to store a single key-value at each index 
+*/
+
+// HASH TABLE CLASS
+class HashTable {
+  // accepts size of how large hashtable should be. If we don't include size, it will resort to 53.
+  constructor(size=53){
+    this.keyMap = new Array(size);
+  }
+
+_hash(key){
+  let total = 0;
+  let WEIRD_PRIME = 31;
+  for (let i = 0; i < Math.min(key.length, 100); i++){
+    let char = key[i];
+    let value = char.charCodeAt(0) - 96    
+    total = (total * WEIRD_PRIME + value) % this.keyMap.length;
+  }
+  return total;
+  }
+}
+
