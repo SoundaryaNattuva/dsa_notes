@@ -1,7 +1,4 @@
-/* HASH TABLES 
-- definition: are used to store key-value pairs
-- in order to loop up values by a key, we need a way to convert keys into a valid array indices. A function that performs this task is called a hash function.
-- we want to ensure randomness, consistent values, and constant time.
+/* HASH TABLES: are used to store key-value pairs
 */
 
 // Poor randomness
@@ -15,7 +12,7 @@ function hash(key, arrayLen){
   return total;
 }
 
-// fix randomness
+// Fixing randomness
 function hash(key, arrayLen){
   let total = 0;
   let WEIRD_PRIME = 31;
@@ -27,20 +24,7 @@ function hash(key, arrayLen){
   return total;
 }
 
-/* Collisions
-Even with a large array and a great hash function, collisions are inevitable. Many strategies to deal with collisions but we will focus on two: 
-  - separate chaining
-  - linear probing
-*/
-
-
-/* SEPARATE CHAINING
-def: at each index in our array we store values using a more sophisticated data structure (e.g. an array or linked list). This allows us to store multiple key-value pairs at the same index.
-*/
-
-/* LINEAR PROBING
-def: we search through the array to find the next empty slot. Unlike with separate chaining, this allows us to store a single key-value at each index 
-*/
+// SEPARATE CHAINING and LINEAR PROBING
 
 // HASH TABLE CLASS
 class HashTable {
@@ -58,6 +42,57 @@ _hash(key){
     total = (total * WEIRD_PRIME + value) % this.keyMap.length;
   }
   return total;
+  }
+
+  // SET Method - done via separate chaining
+  set(key, value){
+    let index = this._hash(key);
+    if(!this.keyMap[index]){
+      this.keyMap[index] = [];
+    }
+    this.keyMap[index].push([key, value]);
+  }
+
+  // GET Method
+  get(key){
+    let index = this._hash(key);
+    if (this.keyMap[index]){
+      for (let i=0; i<this.keyMap[index].length; i++){
+        if (this.keyMap[index][i][0] ===  key){
+          return this.keyMap[index][i][1]
+        }
+      }
+    }
+    return undefined
+  }
+  //VALUES
+  values(){
+    let valuesArr = [];
+    for (let i = 0; i < this.keyMap.length; i++){
+      if (this.keyMap[i]){
+        for(let j = 0; j<this.keyMap[i].length; j++){
+          if (!valuesArr.includes(this.keyMap[i][j][1])){
+            valuesArr.push(this.keyMap[i][j][1])
+          }
+        }
+      }
+    }
+    return valuesArr;
+  }
+
+  //KEYS
+  keys(){
+    let keysArr = [];
+    for (let i = 0; i < this.keyMap.length; i++){
+      if (this.keyMap[i]){
+        for(let j = 0; j<this.keyMap[i].length; j++){
+          if (!keysArr.includes(this.keyMap[i][j][0])){
+            keysArr.push(this.keyMap[i][j][0])
+          }
+        }
+      }
+    }
+    return keysArr;
   }
 }
 
