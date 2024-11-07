@@ -64,9 +64,11 @@ class Graph {
     
     visited[start] = true;
     while(stack.length){
+      // remove from stack and add to result
       currentVertex = stack.pop();
       result.push(currentVertex);
-
+      
+      // check neighbors, add to visited
       this.adjacencyList[currentVertex].forEach(neighbor => {
         if(!visited[neighbor]){
           visited[neighbor] = true;
@@ -77,6 +79,28 @@ class Graph {
     return result;
   }
 
+
+  //Breadth First Traversal
+  breadthFirstTraversal(start){
+    let queue = [start];
+    let result = [];
+    let visited = {};
+    let currentVertex;
+    visited[start] = true;
+
+    while (queue.length){
+      currentVertex = queue.shift();
+      result.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach(neighbor => {
+        if(!visited[neighbor]){
+          visited[neighbor] = true;
+          queue.push(neighbor);
+        }
+      });
+    }
+    return result;
+  }
 }
 
 /*
@@ -93,6 +117,7 @@ DSF iterative: A C E F D B
 */
 
 /* TAKEAWAYS:
+- breadth first - visit neighbors first
 - objects and arrays are ways to store collections of data
 - object: a collection of key-value pairs where each key is a unique identifier (string or symbol), and each key is associated value.
   let obj = { 
