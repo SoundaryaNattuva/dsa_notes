@@ -1,7 +1,4 @@
-// DFS recursive pseudocode
-
-/*
-
+/* DFS recursive pseudocode
 DFS(vertex):
   if vertex is empty
     return (this is base case)
@@ -17,8 +14,18 @@ Visiting things:
   "B": true,
   "D": true,
 }
-
 */
 
+/* Depth First Iterative Pseudocode
+DFS - iterative(start):
+	Let S be a stack
+	S.push(start)
+	While S is not empty
+		Vertex = S.pop()
+		If vertex is not labeled as discovered:
+			Visit vertex(ass to result list)
+			Label vertex as discovered
+			For each of vertex’s neighbors, N do S.push(N)
+*/
 
 

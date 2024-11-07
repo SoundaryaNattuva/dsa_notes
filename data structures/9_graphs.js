@@ -36,6 +36,7 @@ class Graph {
     delete this.adjacencyList[vertex]
   }
 
+  //Depth First - Recursive
   depthFirstRecursive(start){
     let result = [];
     let visited = {};
@@ -54,6 +55,28 @@ class Graph {
 
     return result;
   }
+  //Depth First - Iterative
+  depthFirstIterative(start){
+    let stack = [start];
+    let result = [];
+    let visited = {};
+    let currentVertex;
+    
+    visited[start] = true;
+    while(stack.length){
+      currentVertex = stack.pop();
+      result.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach(neighbor => {
+        if(!visited[neighbor]){
+          visited[neighbor] = true;
+          stack.push(neighbor)
+        }
+      });
+    }
+    return result;
+  }
+
 }
 
 /*
@@ -65,6 +88,19 @@ class Graph {
     \   /
       F
 
-A B D C E F
+DSF recursive: A B D C E F
+DSF iterative: A C E F D B
+*/
+
+/* TAKEAWAYS:
+- objects and arrays are ways to store collections of data
+- object: a collection of key-value pairs where each key is a unique identifier (string or symbol), and each key is associated value.
+  let obj = { 
+    key1: 'value1', 
+    key2: 'value2' 
+  };
+- arrays(list): an ordered collection of items (values) indexed by numbers, where each item can be accessed using its position. 
+  let arr = ['value1', 'value2'];
+
 */
 
