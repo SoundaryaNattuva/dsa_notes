@@ -1,5 +1,5 @@
 // SELECTION SORT: instead of placing large values into sorted postion (as for bubble sort), it places small values into sorted position.
-//KEY: selection sort finds the minimum and swaps at the end. Bubble sort - swaps for largest till the end. 
+//KEY: selection sort finds the minimum and swaps at the end. Bubble sort - swaps for largest as it goes till the end. 
 
 // EXAMPLE: selectionSort([2,15,3,11,10])
 
@@ -43,5 +43,29 @@ function selectionSort(arr){
       arr[small] = temp
     }
   }
+  return arr
+}
+
+//practice #2
+// [2,15,3,11,10]
+function selectionSort(arr){
+  //outer loop: progressively decreases
+  for(let i = 0; i< arr.length ; i++){
+    // keep track of index with smallest value
+    let smallIndex = i;
+    //inner loop: loops through set
+    for(let j = i+1; j< arr.length; j++){
+      if(arr[j] < arr[smallIndex]){
+        smallIndex = j
+      }
+    }
+    // if initial index doesn't match later index, swap
+    if(i !== smallIndex){
+      let temp = arr[i];
+      arr[i] = arr[smallIndex];
+      arr[smallIndex] = temp;
+    }
+  }
+  //return sorted arr
   return arr
 }
