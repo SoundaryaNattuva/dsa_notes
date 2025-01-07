@@ -56,5 +56,19 @@ function insertionSort(arr){
   }
 }
 
+[1,2,4,76, 9]
+function insertSort(arr){
+  //outer loop: sorted set
+  for (let i = 0; i < arr.length; i++){
+    //inner loop: sorted set 0 till j
+    for(let j=0; j<i; j++){
+      if(arr[j] > arr[i]){
+        let temp = arr[]
+      }
+    }
+
+  }
+}
+
 
 
