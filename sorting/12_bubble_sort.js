@@ -69,19 +69,22 @@ function bubbleSort(arr){
 // Example - [37,45,29,8,12,88,-3])
 
 function bubbleSort(arr){
+  // Flag to optimize and terminate early if array is sorted
   let noSwaps;
-  //outer loop - gives you set to focus on
-  for(i = arr.length; i > 0 ; i--){
-    noSwaps = true
-    //inner loop - looping through inner set
-    for(j = 0; i < i-1; j++){
-      if(arr[i] > arr[i+1]){
+  //outer loop -  progressively reduces the range of elements to sort
+  for(let i = arr.length; i > 0 ; i--){
+    noSwaps = true;
+    //inner loop - compares and swaps adjacent elements
+    for(let j = 0; i < i-1; j++){
+      if(arr[i] > arr[j+1]){
         let temp = arr[i];
-        arr[i] = arr[i+j];
-        arr[i+j] = temp;
-        noSwaps = false
+        arr[i] = arr[j+1];
+        noSwaps = false; 
+        // set flag to indicate a swap occurred
+        arr[j+1] = temp;
       }
     }
+    // If no swaps were made in this pass, array is already sorted
     if(noSwaps) break;
   }
   return arr;
