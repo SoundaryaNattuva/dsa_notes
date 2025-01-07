@@ -19,7 +19,7 @@ function bubbleSort(arr){
 //SOLUTION - OPTIMIZED:
 function bubbleSort(arr){
   var noSwaps;
-  for (let i=arr.length; i>=0; i--){
+  for (let i = arr.length; i > 0; i--){
     noSwaps = true;
     for (let j=0; j<i-1; j++){
       if (arr[j] > arr[j+1]){
@@ -35,7 +35,7 @@ function bubbleSort(arr){
 }
 
 //TAKEAWAY:
-// if (noSwaps) break - if true, break. If false, do nothing.
+// if noSwaps - if true, break. If false, do nothing.
 // var is not used anymore. Let and Const are used when introducing a variable.
 // Const - cannot be reassigned.
 
@@ -65,9 +65,24 @@ function bubbleSort(arr){
   return arr
 }
 
-// practice # 2:
-// EXAMPLE: bubbleSort([37,45,29,8,12,88,-3])
+//practice #2:
+// Example - [37,45,29,8,12,88,-3])
 
 function bubbleSort(arr){
-
+  let noSwaps;
+  //outer loop - gives you set to focus on
+  for(i = arr.length; i > 0 ; i--){
+    noSwaps = true
+    //inner loop - looping through inner set
+    for(j = 0; i < i-1; j++){
+      if(arr[i] > arr[i+1]){
+        let temp = arr[i];
+        arr[i] = arr[i+j];
+        arr[i+j] = temp;
+        noSwaps = false
+      }
+    }
+    if(noSwaps) break;
+  }
+  return arr;
 }

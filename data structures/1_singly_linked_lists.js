@@ -31,8 +31,8 @@ class SinglyLinkedList {
 
   pop(){
     if (!this.head) return undefined;
-    var current = this.head;
-    var newTail = current
+    let current = this.head;
+    let newTail = current
     while(current.next){
       newTail = current;
       current = current.next;
@@ -201,7 +201,7 @@ class SinglyLinkedList {
     // length-- 
     this.length--;
     // edge case: if left with one node, set as head and tail - already taken care of.
-    // edge case: if left with no node, set head and tail as null
+    // edge case: if left with 0 length (specifically when starting with length 1), set head and tail as null
     if (this.length === 0){
       this.head = null
       this.tail = null;
@@ -410,3 +410,160 @@ function reverse(){
   node = this.head;
   return this
 }
+
+
+//---PRACTICE #2----//
+class Node {
+  constructor(val){
+    this.val = val;
+    this.next = null;
+  }
+}
+
+class SinglyLinkedList {
+  constructor(){
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+
+  push(val){
+    let newNode = new Node(val);
+    // is this this first item to be added to the list
+    if (this.length === 0){
+      this.head = newNode;
+      this.tail = newNode;
+      this.length++
+    } else {
+      // adding to existing list
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    return this
+  }
+
+  pop(){
+    // empty list
+    if (this.length === 0) return undefined;
+    // +1 list
+    let current = this.head;
+    let newTail = current;
+    while(current.next){
+      newTail = current;
+      current = current.next;
+    }
+    this.tail = newTail;
+    this.tail.next = null;
+    this.length--;
+    // if length drops to 0 when starting with 1, this scenario takes care of it.
+    if(this.length === 0){
+      this.head = null;
+      this.tail = null;
+    }
+  }
+
+  //remove at beginning
+  shift(){
+    // empty list - undefined
+    if(!this.head) return undefined;
+    let removedNode = this.head
+    if(this.length===1){
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = removedNode.next;
+      removedNode.next = null;
+    }
+    this.length--;
+    return removedNode;
+  }
+
+  //add at beginning
+  unshift(val){
+    let newNode = new Node(val);
+    if(!this.head){
+      this.head = newNode;
+      this.tail = newNode;
+    } 
+    newNode.next = this.head;
+    this.head = newNode;
+    this.length++;
+    return this;
+  }
+
+
+  //get
+  get(index){
+    if(index < 0 || index > this.length) return undefined;
+    let counter = 0;
+    let focus = this.head;
+    if(counter !== index){
+      focus = focus.next;
+      counter++;
+    }
+    return focus
+  }
+
+  //set
+  set(index, val){
+    // get the node. *when using method, use this.
+    let replaceNode = this.get(index);
+    // check if node is valid
+    if(replaceNode){
+      // reassign value of node
+      replaceNode.val=val
+      return true
+    } 
+    return false
+  }
+
+  //inset
+  insert(index, val){
+    // create node with value
+    let newNode = new Node(val);
+    // use get method to find insertion at index
+    let prevIndex = this.get(index-1)
+    let nextIndex = this.get(index)
+
+    // if index is 0 - unshift method
+    if(index === 0){
+      this.unshift(val);
+      return true;
+    }
+    // if index is length = push method
+    if(index === this.length){
+      this.push(val);
+      return true;
+    }
+    // if index is valid
+    if(nextIndex){
+      // if valid - pointers are established (next) + return true
+      prevIndex.next = newNode
+      newNode.next = nextIndex
+      return true
+    }
+    // if invalid - return false
+    return false
+  }
+
+  // reverse
+  reverse(){
+    var node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    var next;
+    var prev = null;
+    for(var i = 0; i < this.length; i++){
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+    return this;
+  }
+}
+
+let node = this.head
+this.head = this.tail
+this.tail = node
+

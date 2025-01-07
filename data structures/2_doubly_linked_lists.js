@@ -29,7 +29,7 @@ class DoublyLinkedList {
     } else {
       //if not, set next property on tail to new node
       this.tail.next = newNode
-      //set prev propert on new node to be tail
+      //set prev property on new node to be tail
       newNode.prev = this.tail
       // set tail to be newly created node
       this.tail = newNode
@@ -174,5 +174,145 @@ class DoublyLinkedList {
     removedNode.prev = null
     this.length--
     return removedNode;
+  }
+}
+
+//---Practice #1----//
+
+pop(){
+  if(!this.head) return undefined;
+  let removeTail = this.tail;
+  if(this.length === 1){
+    this.head = null;
+    this.tail = null;
+  } else {
+    this.tail = removeTail.prev;
+    this.tail.next = null;
+    removeTail.prev = null;
+  }
+  this.length--;
+  return removeTail;
+}
+
+//remove node from beginning of list
+shift(){
+  if(!this.head) return undefined;
+  let removeNode = this.head
+  if(!this.head.next){
+    this.head = null;
+    this.tail = null;
+  } else {
+    this.head = removeNode.next;
+    this.head.prev = null;
+    removeNode.next = null;
+  }
+  this.length--;
+  return removeNode;
+}
+
+//add node to beginning of list
+unshift(val){
+  let newNode = new Node(val);
+  if(!this.head){
+    this.head = newNode;
+    this.tail = newNode;
+  } else {
+    this.head.prev = newNode;
+    newNode.next = this.head;
+    this.head = newNode;
+  }
+  this.length++;
+  return this
+}
+
+//get
+get(index){
+  if(index < 0 || index >= this.length) return null;
+  let counter, current;
+  if(index < this.length/2){
+    counter = 0;
+    current = this.head;
+    while(counter !== index){
+      counter++;
+      current=current.next
+    }
+  } else {
+    counter = 0;
+    current = this.tail;
+    while(count !== index){
+      counter--;
+      current = current.prev
+    }
+  }
+  return current
+}
+
+//set
+set(index, value){
+  // find the node - get!
+  let replaceNode = this.get(index);
+  // check if node is valid
+  if(replaceNode){
+    // if valid - replace with value + return true
+    replaceNode.val = value;
+    return true
+  }
+  // if invalid - return false
+  return false
+}
+
+//insert
+insert(index, value){
+  let newNode = new Node(value);
+  // if index is 0 - unshift method add at beginning
+  if(index === 0){
+    this.unshift(val);
+    return true;
+  }
+  // if index is length - push method add at end
+  if(index === this.length){
+    this.push(val);
+    return true;
+  }
+  // if index is valid
+  if(index > 0 && index < this.length){
+    // use get for prev node (index-1)
+    let prevNode = this.get(index-1)
+    // use get for next node (index)
+    let nextNode = this.get(index)
+    // set pointers
+    prevNode.next = newNode;
+    newNode.prev = prevNode;
+    newNode.next = nextNode;
+    nextNode.prev = newNode;
+    this.length++;
+    return true;
+  }
+  return false
+}
+
+//remove
+remove(index){
+  // if index < 0 or index > length return false
+  if(index < 0 || index >= this.length) return false;
+  // if index is 0, shift
+  if(index === 0) return this.shift()
+  // if index is this.length-1, pop
+  if(index === this.length-1) return this.pop()
+  if(index > 0 && index < this.length){
+    // get node of interest
+    let removeNode = this.get(index);
+    // get prev node
+    let prevNode = removeNode.prev;
+    // get after node
+    let afterNode = removeNode.next;
+    // set pointers
+    prevNode.next = afterNode;
+    afterNode.prev = prevNode;
+    // remove pointers on removedNode
+    removeNode.prev = null;
+    removeNode.next = null;
+    this.length--
+    return removeNode
   }
 }
