@@ -160,3 +160,23 @@ for (let j=0; j<splitstr2.length; j++){
 }
 return true
 }
+
+// OPTIMAL - Hash Map
+isAnagram(s, t) {
+  // if lengths don't match - return false
+  if(s.length !== t.length) return false;
+  // create counter fo each string
+  let sCounter = {};
+  let tCounter = {};
+
+  for(let i=0; i<s.length; i++){
+    sCounter[s[i]] ? sCounter[s[i]] += 1 : sCounter[s[i]] = 1;
+    tCounter[t[i]] ? tCounter[t[i]] += 1 : tCounter[t[i]] = 1;
+  }
+  // check if counter key exsists and value matches
+  for (let key in sCounter){
+    if (sCounter[key] !== tCounter[key]) return false;
+  }
+  return true;
+}
+
